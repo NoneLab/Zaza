@@ -1,0 +1,16 @@
+declare_args() {
+    clang = "clang"
+    clangxx = "clang++"
+    llvm_ar = "llvm-ar"
+    lld_link = "lld-link"
+    llvm_readobj = "llvm-readobj"
+
+    uefi_target_triple = "x86_64-unknown-uefi"
+
+    uefi_entry_point = "EfiMain"
+}
+
+current_os = target_os
+current_cpu = target_cpu
+
+set_default_toolchain("//build/toolchain/uefi:clang")

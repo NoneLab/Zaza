@@ -1,0 +1,10 @@
+buildconfig = "//build/BUILDCONFIG.gn"
+
+root = "//:all"
+
+default_args = {
+    target_os = "uefi"
+    target_cpu = "x64"
+}
+
+export_compile_commands = [ "//*" ]

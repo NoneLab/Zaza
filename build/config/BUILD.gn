@@ -1,0 +1,34 @@
+config("freestanding_x64") {
+    cflags = [
+        "-ffreestanding",
+        "-fno-stack-protector",
+        "-fno-builtin",
+        "-mno-red-zone",
+    ]
+}
+
+config("warnings") {
+    cflags = [
+        "-Wall",
+        "-Wextra",
+    ]
+}
+
+config("cxx26_no_runtime") {
+    cflags_cc = [
+        "-std=c++2c",
+        "-fno-exceptions",
+        "-fno-rtti",
+        "-fno-threadsafe-statics",
+    ]
+}
+
+config("uefi_application_link") {
+    ldflags = [
+        "/machine:x64",
+        "/subsystem:efi_application",
+        "/entry:$uefi_entry_point",
+        "/dll",
+        "/nodefaultlib",
+    ]
+}

@@ -1,0 +1,6 @@
+[submodule "lib/newlib"]
+	path = lib/newlib
+	url = git@github.com:NoneLab/newlib-uefi.git
+[submodule "lib/simplefi"]
+	path = lib/simplefi
+	url = git@github.com:NoneLab/NoneEFI.git

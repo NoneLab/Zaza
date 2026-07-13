@@ -1,0 +1,82 @@
+toolchain("clang") {
+    tool("cc") {
+        depfile = "{{output}}.d"
+        depsformat = "gcc"
+
+        command =   "\"$clang\" --target=$uefi_target_triple " +
+                    "-MMD -MF \"{{output}}.d\" -MT \"{{output}}\" " +
+                    "{{defines}} {{include_dirs}} {{cflags}} {{cflags_c}} " +
+                    "-c \"{{source}}\" -o \"{{output}}\""
+
+        outputs = [
+            "{{source_out_dir}}/{{target_output_name}}.{{source_name_part}}.o",
+        ] 
+
+        description = "CC {{label}} {{source}}"
+    }
+
+    tool("cxx") {
+        depfile = "{{output}}.d"
+        depsformat = "gcc"
+
+        command =   "\"$clangxx\" --target=$uefi_target_triple " +
+                    "-MMD -MF \"{{output}}.d\" -MT \"{{output}}\" " +
+                    "{{defines}} {{include_dirs}} {{cflags}} {{cflags_cc}} " +
+                    "-c \"{{source}}\" -o \"{{output}}\""
+
+        outputs = [
+            "{{source_out_dir}}/{{target_output_name}}.{{source_name_part}}.o",
+        ] 
+
+        description = "CXX {{label}} {{source}}"
+    }
+
+    tool("alink") {
+        command =   "rm -f \"{{output}}\" && " +
+                    "\"$llvm_ar\" rcsD \"{{output}}\" @\"{{output}}.rsp\""
+
+        rspfile = "{{output}}.rsp"
+        rspfile_content = "{{inputs_newline}}"
+
+        outputs = [
+            "{{output_dir}}/{{target_output_name}}{{output_extension}}",
+        ]
+
+        default_output_dir = "{{target_out_dir}}"
+        default_output_extension = ".a"
+        output_prefix = "lib"
+
+        description = "AR {{label}}"
+    }
+
+    tool("link") {
+        command =   "\"$lld_link\" /nologo {{ldflags}} " +
+                    "/out:\"{{output}}\" @\"{{output}}.rsp\""
+        
+        rspfile = "{{output}}.rsp"
+        rspfile_content = "{{inputs}} {{solibs}} {{libs}} {{rlibs}}"
+
+        outputs = [
+            "{{output_dir}}/{{target_output_name}}{{output_extension}}",
+        ]
+
+        default_output_dir = "{{root_out_dir}}"
+        default_output_extension = ".EFI"
+        output_prefix = ""
+
+        lib_switch = ""
+        lib_dir_switch = "/libpath:"
+
+        description = "LINK {{label}}"
+    }
+
+    tool("stamp") {
+        command = "touch \"{{output}}\""
+        description = "STAMP {{label}}"
+    }
+
+    tool("copy") {
+        command = "cp -f \"{{source}}\" \"{{output}}\""
+        description = "COPY {{source}}"
+    }
+}

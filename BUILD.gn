@@ -1,0 +1,19 @@
+group("libs") {
+    deps = [
+        "//lib/newlib:c_uefi",
+        "//lib/simplefi:simplefi"
+    ]
+}
+
+group("apps") {
+    deps = [
+        "apps/hello_world:hello_world",
+    ]
+}
+
+group("all") {
+    deps = [
+        ":libs",
+        ":apps"
+    ]
+}

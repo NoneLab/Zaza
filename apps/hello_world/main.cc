@@ -7,7 +7,7 @@
 EFI_STATUS EFIAPI
 EfiMain(EFI_HANDLE ImageHandle, EfiSystemTable* SystemTable)
 {
-    InitializeRuntime(ImageHandle, SystemTable);
+    Runtime::InitializeRuntime(ImageHandle, SystemTable);
     printf("Hello, newlib on UEFI\r\n");
     return EFI_SUCCESS;
 }

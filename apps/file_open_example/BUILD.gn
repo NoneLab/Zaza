@@ -1,0 +1,16 @@
+executable("file_open_example") {
+    sources = [ "main.cc" ]
+
+    deps = [ "//lib/simplefi:simplefi" ]
+
+    configs = [
+        "//build/config:freestanding_x64",
+        "//build/config:warnings",
+        "//build/config:cxx26_no_runtime",
+        "//build/config:uefi_application_link"
+    ]
+
+    output_name = "FILEOPEN"
+    output_extension = "EFI"
+    output_dir = "$root_out_dir/esp"
+}

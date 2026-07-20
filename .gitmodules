@@ -3,4 +3,4 @@
 	url = git@github.com:NoneLab/newlib-uefi.git
 [submodule "lib/simplefi"]
 	path = lib/simplefi
-	url = git@github.com:NoneLab/NoneEFI.git
+	url = git@github.com:NoneLab/NonEFI.git

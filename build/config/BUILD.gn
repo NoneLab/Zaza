@@ -23,6 +23,15 @@ config("cxx26_no_runtime") {
     ]
 }
 
+config("uefi_stdinc") {
+    cflags_cc = [
+        "-nostdinc++",
+        "-nostdlibinc",
+        "-isystem" + rebase_path("//third_party/libcxx/include/c++/v1", root_build_dir),
+        "-isystem" + rebase_path("//lib/newlib/newlib/libc/include", root_build_dir),
+    ]
+}
+
 config("uefi_application_link") {
     ldflags = [
         "/machine:x64",

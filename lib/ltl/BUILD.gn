@@ -1,0 +1,9 @@
+config("public_headers") {
+    include_dirs = ["include"]
+}
+
+static_library("ltl") {
+    public_configs = [
+        ":public_headers"
+    ]
+}

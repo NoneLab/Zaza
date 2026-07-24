@@ -7,6 +7,7 @@ executable("file_open_example") {
         "//build/config:freestanding_x64",
         "//build/config:warnings",
         "//build/config:cxx26_no_runtime",
+        "//build/config:uefi_stdinc",
         "//build/config:uefi_application_link"
     ]
 

@@ -1,0 +1,9 @@
+config("public_headers") {
+    include_dirs = ["include"]
+}
+
+static_library("edk2") {
+    public_configs = [
+        ":public_headers"
+    ]
+}

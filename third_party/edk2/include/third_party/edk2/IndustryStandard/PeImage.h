@@ -11,6 +11,7 @@ Copyright (c) 2006 - 2018, Intel Corporation. All rights reserved.<BR>
 Portions copyright (c) 2008 - 2009, Apple Inc. All rights reserved.<BR>
 Portions Copyright (c) 2016 - 2020, Hewlett Packard Enterprise Development LP. All rights reserved.<BR>
 Portions Copyright (c) 2022, Loongson Technology Corporation Limited. All rights reserved.<BR>
+Portions Copyright (c) 2026 Hensy SDhin. All rights reserved.<BR>
 
 SPDX-License-Identifier: BSD-2-Clause-Patent
 
@@ -21,6 +22,8 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 //
 // PE32+ Subsystem type for EFI images
 //
+#include <simplefi/types.h>
+
 #define EFI_IMAGE_SUBSYSTEM_EFI_APPLICATION          10
 #define EFI_IMAGE_SUBSYSTEM_EFI_BOOT_SERVICE_DRIVER  11
 #define EFI_IMAGE_SUBSYSTEM_EFI_RUNTIME_DRIVER       12
@@ -685,7 +688,7 @@ typedef struct {
 #define CODEVIEW_SIGNATURE_MTOC  SIGNATURE_32('M', 'T', 'O', 'C')
 typedef struct {
   UINT32    Signature;                       ///< "MTOC".
-  GUID      MachOUuid;
+  EfiGuid      MachOUuid;
   //
   //  Filename of .DLL (Mach-O with debug info) goes here
   //

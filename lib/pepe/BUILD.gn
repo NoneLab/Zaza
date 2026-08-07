@@ -1,0 +1,27 @@
+config("public_headers") {
+    include_dirs = ["include"]
+}
+
+static_library("pepe") {
+    sources = [
+        "pepe/pe.cc"
+    ]
+
+    configs = [
+        "//build/config:uefi_stdinc",
+        "//build/config:freestanding_x64",
+        "//build/config:warnings",
+        "//build/config:cxx26_no_runtime",
+        "//lib/ltl:public_headers",
+        "//lib/simplefi:public_headers",
+        "//lib/newlib:newlib_public",
+    ]
+
+    public_configs = [
+        ":public_headers"
+    ]
+
+    public_deps = [
+        "//third_party/edk2:edk2"
+    ]
+}
